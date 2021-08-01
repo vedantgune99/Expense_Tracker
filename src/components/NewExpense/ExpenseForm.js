@@ -5,6 +5,7 @@ const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
+  const [currency, setCurrency] = useState("$");
   // const [userInput, setUserInput] = useState({
   //   enteredTitle: "",
   //   enteredAmount: "",
@@ -35,23 +36,25 @@ const ExpenseForm = (props) => {
     // });
   };
 
+  const CurrencyChangeHandler = (event) => {
+    setCurrency(event.target.value);
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
+    setCurrency("");
 
     const enteredData = {
       title: enteredTitle,
       amount: +enteredAmount,
       date: new Date(enteredDate),
+      currency: currency,
     };
 
     props.onSaveExpenseData(enteredData);
-  };
-
-  const CurrencyChangeHandler = (event) => {
-    console.log(event.target.value);
   };
 
   return (
@@ -70,6 +73,15 @@ const ExpenseForm = (props) => {
 
           <div className="new-expense__control">
             <label>Amount</label>
+            <select
+              value={currency}
+              onChange={CurrencyChangeHandler}
+              className="currency-select"
+            >
+              <option value="$">$</option>
+              <option value="₹">₹</option>
+              <option value="£">£</option>
+            </select>
             <input
               type="number"
               value={enteredAmount}

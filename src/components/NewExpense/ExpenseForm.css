@@ -24,3 +24,12 @@
 .new-expense__actions {
   text-align: right;
 }
+
+.currency-select {
+  height: 42px;
+  width: 50px;
+  margin: 0px 8px;
+  float: left;
+  border: 1px solid whitesmoke;
+  border-radius: 8px;
+}
